@@ -13,18 +13,22 @@ const UserTemplate = (props) => {
 }
 
 UserTemplate.propTypes = {
-    name:PropTypes.oneOfType([
+    name: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
-        PropTypes.oneOf(['James','Steve'])
+        PropTypes.oneOf(['James', 'Steve'])
     ]),
-    lastname:PropTypes.string,
-    age:PropTypes.number,
-    hobbies:PropTypes.arrayOf(PropTypes.string),
-    spanish:PropTypes.bool,
-    message:PropTypes.func,
-    car:PropTypes.object,
-    mother:PropTypes.string.isRequired
+    lastname: PropTypes.string,
+    age: PropTypes.number,
+    hobbies: PropTypes.arrayOf(PropTypes.string),
+    spanish: PropTypes.bool,
+    message: PropTypes.func,
+    car: PropTypes.object,
+    mother: function (props, propName, componentName) {
+        if (props[propName] !== 'Jane') {
+            return new Error(`The name ${props[propName]} is incorrect, should be Jane.`)
+        }
+    }
 }
 
 export default UserTemplate;
